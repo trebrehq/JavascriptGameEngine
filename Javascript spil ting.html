@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript based game engine</title>
+    </head>
+    <body style = "background-color: rgb(211, 211, 211);">
+        <canvas id = "myCanvas" width = "1000" height = "500"></canvas>
+
+        <br>
+
+        <button onclick = "sprites[0].moveAndUpdate(new Vector2(10, 0))">move square right</button>
+        <br>
+        <button onclick = "addSpriteAndUpdate(new Sprite('square', new Vector2(sprites[sprites.length - 1].position.x + 60, 0), new Vector2(50, 50)))">add sprite</button>
+        <br>
+        <button onclick = "updateCanvas()">update canvas</button>
+
+        <script src = "AdditionalFunctionsAndClasses.js"></script>
+        <script src = "InputManager.js"></script>
+        <script src = "SpriteRenderer.js"></script>
+        <script src = "RuntimeManager.js"></script>
+    </body>
+</html>
