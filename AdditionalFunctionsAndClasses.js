@@ -94,6 +94,14 @@ class Vector2
     }
 }
 
+class Collision
+{
+    overall;
+    x;
+    y;
+    other;
+}
+
 class Behaviour
 {
     sprite;
@@ -133,7 +141,7 @@ class PhysicsBody extends Behaviour
 
     static calculateCollisionsAtPoint(point)
     {
-        var output = false;
+        var output = new Collision();
         var outputCalculated = false;
         var xAxis;
         var yAxis;
@@ -146,9 +154,12 @@ class PhysicsBody extends Behaviour
                 yAxis = index.position.y < point.y && index.position.y + index.size.y > point.y;
             }
 
-            if(xAxis && yAxis)
+            if(xAxis && yAxis && !outputCalculated)
             {
-                output = xAxis && yAxis;
+                output.overall = xAxis && yAxis;
+                output.x = xAxis;
+                output.y = yAxis;
+                output.other = index;
                 outputCalculated = true;
             }
         });
