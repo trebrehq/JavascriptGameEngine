@@ -29,6 +29,6 @@ sprites.forEach(function(sprite)
     });
 });
 
-// Sprite.findWithName("square1").addBehaviour(new PhysicsBody);
-// Sprite.findWithName("square2").addBehaviour(new PhysicsBody);
-// Sprite.findWithName("square3").addBehaviour(new PhysicsBody);
+Sprite.findWithName("square1").addBehaviour(new PhysicsBody);
+Sprite.findWithName("square2").addBehaviour(new PhysicsBody);
+Sprite.findWithName("square3").addBehaviour(new PhysicsBody);

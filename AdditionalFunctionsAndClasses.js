@@ -121,6 +121,7 @@ class PhysicsBody extends Behaviour
 
     update()
     {
+        this.sprite.position.x += this.velocity.x;
         this.sprite.position.y += this.velocity.y;
 
         this.velocity = Vector2.add(this.velocity, new Vector2(0, this.gravityScale * 0.05));
@@ -137,6 +138,41 @@ class PhysicsBody extends Behaviour
             this.velocity.y *= -0.6;
             this.sprite.position.y = canvas.height - this.sprite.size.y;
         }
+    }
+
+    calculateCollisionsAroundHitbox()
+    {
+        var output = new Collision();
+        var outputCalculated = false;
+        var xAxis_left;
+        var xAxis_right;
+        var yAxis_top;
+        var yAxis_buttom;
+        
+        sprites.forEach(function(index)
+        {
+            if(!outputCalculated)
+            {
+                xAxis_right = index.position.x <= this.sprite.position.x;
+                xAxis_left =  index.position.x + index.size.x >= this.sprite.position.x + this.sprite.size.x;
+
+                yAxis_top = index.position.y <= this.sprite.position.y;
+                yAxis_buttom = index.position.y + index.size.y >= this.sprite.position.y + this.sprite.size.y;
+            }
+
+            if((xAxis_right || xAxis_left) && (yAxis_top || yAxis_buttom))
+            {
+                output.overall = (xAxis_right || xAxis_left) && (yAxis_top || yAxis_buttom);
+                output.x = (xAxis_right || xAxis_left);
+                output.y = (yAxis_top || yAxis_buttom);
+                output.other = index;
+
+                outputCalculated = true;
+            }
+        });
+
+
+        return output;
     }
 
     static calculateCollisionsAtPoint(point)
